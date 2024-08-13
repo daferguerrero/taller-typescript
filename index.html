@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Taller TypeScript</title>
   <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="style.css">
   <script type="module" src="./scripts/main.js"></script>
 </head>
 <body>
@@ -15,8 +16,10 @@
   <table class="table" id="estadisticas"></table>
 
   <h2>Cursos tomados</h2>
-  <input type="text" class="form-control" id="txt-busqueda" placeholder="Filtrar por nombre">
-  <button type="button" class="btn btn-success" id="btn-filtro">Aplicar</button>
+  <div class="filtro">
+    <input type="text" class="form-control" id="txt-busqueda" placeholder="Filtrar por nombre">
+    <button type="button" class="btn btn-success" id="btn-filtro">Aplicar</button>
+  </div>
   <table class="table" id="cursos">
     <thead class="thead-dark">
       <tr>
