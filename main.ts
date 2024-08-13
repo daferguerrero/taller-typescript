@@ -19,10 +19,22 @@ console.log(ap.cursos);
 let aprendizTable: HTMLElement = document.getElementById("aprendiz")!;
 let estadisticasTable: HTMLElement = document.getElementById("estadisticas")!;
 let cursosTable: HTMLElement = document.getElementById("cursos")!;
+let btnFiltro: HTMLElement = document.getElementById("btn-filtro")!;
+let txtBusqueda: HTMLInputElement =<HTMLInputElement>document.getElementById("txt-busqueda")!;
+
+btnFiltro.onclick = () => {
+  let text: string = txtBusqueda.value;
+  text = (text==null)?"": text;
+  cursosTable.getElementsByTagName("tbody")[0].remove();
+  let cursosFiltrados: Curso[] = ap.cursos.filter(function(c) {
+    return c.nombre.match(text);
+  })
+  mostrarCursosAprendiz(cursosFiltrados);
+};
 
 mostrarDatosAprendiz(ap);
 mostrarEstadisticasAprendiz(ap);
-mostrarCursosAprendiz(ap);
+mostrarCursosAprendiz(ap.cursos);
 
 function mostrarDatosAprendiz(aprendiz: Aprendiz): void {
   let tbodyAprendiz = document.createElement("tbody");
@@ -41,9 +53,9 @@ function mostrarEstadisticasAprendiz(aprendiz: Aprendiz): void {
   estadisticasTable.appendChild(trElement);
 }
 
-function mostrarCursosAprendiz(aprendiz: Aprendiz): void {
+function mostrarCursosAprendiz(cursos: Curso[]): void {
   let tbodyCursos: HTMLElement = document.createElement("tbody");
-  for (let curso of aprendiz.cursos)
+  for (let curso of cursos)
   {
     let trElement: HTMLElement = document.createElement("tr");
     trElement.innerHTML = `<td>${curso.nombre}</td></tr>
